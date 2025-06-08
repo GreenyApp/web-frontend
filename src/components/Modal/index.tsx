@@ -1,0 +1,45 @@
+import React from 'react';
+import {
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalTitle,
+    ModalCloseButton,
+    ModalBody,
+    ModalFooter,
+} from './styles';
+
+interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+    title: string;
+    children: React.ReactNode;
+    footerActions?: React.ReactNode; // Optional footer buttons
+}
+
+const Modal: React.FC<ModalProps> = ({
+    isOpen,
+    onClose,
+    title,
+    children,
+    footerActions,
+}) => {
+    if (!isOpen) {
+        return null;
+    }
+
+    return (
+        <ModalOverlay onClick={onClose}> {/* Close on overlay click */}
+            <ModalContent onClick={(e) => e.stopPropagation()}> {/* Prevent closing when clicking inside content */}
+                <ModalHeader>
+                    <ModalTitle>{title}</ModalTitle>
+                    <ModalCloseButton onClick={onClose}>×</ModalCloseButton>
+                </ModalHeader>
+                <ModalBody>{children}</ModalBody>
+                {footerActions && <ModalFooter>{footerActions}</ModalFooter>}
+            </ModalContent>
+        </ModalOverlay>
+    );
+};
+
+export default Modal;
