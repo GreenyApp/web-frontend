@@ -16,13 +16,13 @@ import {
     InfoGaugeWrapper,
     InfoItemWithGauge,
 } from './styles';
-import { FaTint, FaEdit, FaTrash, FaInfoCircle } from 'react-icons/fa'; // Example icons
+import { FaTint, FaEdit, FaTrash, FaInfoCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 interface DeviceCardProps {
     device: Product;
     showFullDetails?: boolean;
-    children?: ReactNode; // To differentiate between homepage summary and devices page detail
+    children?: ReactNode;
 }
 
 const DeviceCard: React.FC<DeviceCardProps> = ({ device, showFullDetails = false }) => {
@@ -48,7 +48,6 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, showFullDetails = false
             header={
                 <DeviceHeader>
                     <DeviceTitle>{device.name || 'Unnamed Device'}</DeviceTitle>
-                    {/* Status indicator can be added here if backend provides online/offline status */}
                 </DeviceHeader>
             }
         >
@@ -85,7 +84,6 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, showFullDetails = false
                     <InfoItem>
                         <InfoLabel>Температура</InfoLabel>
                         <InfoValue>{device.temperature}°C</InfoValue>
-                        {/* Temperature might not need a gauge like others */}
                     </InfoItem>
                 )}
                 {showFullDetails && device.lightLevel !== undefined && (
@@ -99,7 +97,6 @@ const DeviceCard: React.FC<DeviceCardProps> = ({ device, showFullDetails = false
                     <InfoItemWithGauge>
                         <InfoLabel>Якість повітря</InfoLabel>
                         <InfoValue>{device.airQualityText || 'N/A'} ({device.airQualityValue})</InfoValue>
-                        {/* Assuming airQualityValue is a percentage for the gauge */}
                         <InfoGaugeWrapper><Gauge value={device.airQualityValue} type="airQuality" /></InfoGaugeWrapper>
                     </InfoItemWithGauge>
                 )}

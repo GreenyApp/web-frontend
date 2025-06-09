@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/store/deviceStore.ts
 import { create } from 'zustand';
 import type { Product } from '../types/product';
 import productService from '../services/productService';
@@ -12,9 +11,9 @@ interface DeviceState {
     fetchDevices: () => Promise<void>;
     addDevice: (deviceData: { code: string; name: string }) => Promise<Product | null>;
     updateDeviceName: (deviceId: number, newName: string) => Promise<boolean>;
-    deleteDevice: (deviceId: number) => Promise<boolean>; // This might be "unassign"
+    deleteDevice: (deviceId: number) => Promise<boolean>; 
     waterDevice: (deviceId: number) => Promise<void>;
-    clearDevices: () => void; // For logout
+    clearDevices: () => void;
     getDeviceById: (id: number) => Product | undefined;
 }
 
@@ -57,7 +56,7 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
             const updatedProduct = await productService.updateProductByUser(deviceId, newName);
             set((state) => ({
                 devices: state.devices.map((device) =>
-                    device.id === deviceId ? { ...device, ...updatedProduct } : device // Update with full returned product
+                    device.id === deviceId ? { ...device, ...updatedProduct } : device
                 ),
                 isLoading: false,
             }));
@@ -75,7 +74,6 @@ export const useDeviceStore = create<DeviceState>((set, get) => ({
         const { showNotification } = useUIStore.getState();
         try {
             await productService.deleteProductByUser(deviceId);
-            // If successful, remove the device from the local state
             set((state) => ({
                 devices: state.devices.filter((device) => device.id !== deviceId),
                 isLoading: false,

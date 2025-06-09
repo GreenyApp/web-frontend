@@ -8,7 +8,7 @@ export const ModalOverlay = styled.div`
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    display: flex; /* Changed from 'none' to 'flex' */
+    display: flex;
     justify-content: center;
     align-items: center;
 `;

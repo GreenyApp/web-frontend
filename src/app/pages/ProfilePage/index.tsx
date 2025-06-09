@@ -4,14 +4,13 @@ import Input from '../../../components/Input';
 import Button from '../../../components/Button';
 import { useAuthStore } from '../../../store/authStore';
 import { useUIStore } from '../../../store/uiStore';
-import userService from '../../../services/userService'; // Direct service call for password change
+import userService from '../../../services/userService';
 import { SectionHeader, ProfileFormContainer, SubHeader } from './styles';
 
 const ProfilePage: React.FC = () => {
     const { user } = useAuthStore();
     const showNotification = useUIStore(state => state.showNotification);
 
-    // const [currentPassword, setCurrentPassword] = useState(''); // Backend doesn't require current for change via user.id
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isChangingPassword, setIsChangingPassword] = useState(false);
@@ -29,11 +28,8 @@ const ProfilePage: React.FC = () => {
 
         setIsChangingPassword(true);
         try {
-            // The backend API for changePassword uses the authenticated user's ID
-            // and doesn't require the current password in the payload.
             await userService.changePassword(newPassword);
             showNotification('Пароль успішно змінено', 'success');
-            // setCurrentPassword('');
             setNewPassword('');
             setConfirmPassword('');
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,7 +42,7 @@ const ProfilePage: React.FC = () => {
     };
 
     if (!user) {
-        return <p>Завантаження профілю...</p>; // Or redirect if not authenticated
+        return <p>Завантаження профілю...</p>;
     }
 
     return (
@@ -64,14 +60,6 @@ const ProfilePage: React.FC = () => {
 
                     <SubHeader>Зміна пароля</SubHeader>
                     <form onSubmit={handleChangePassword}>
-                        {/* Backend API doesn't require currentPassword field for /user/change-password endpoint
-                        <Input
-                            label="Поточний пароль"
-                            id="currentPassword"
-                            type="password"
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                        /> */}
                         <Input
                             label="Новий пароль"
                             id="newPassword"

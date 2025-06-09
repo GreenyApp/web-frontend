@@ -3,7 +3,7 @@ import { FormGroup, Label, StyledInput } from './styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
-    id: string; // Required for associating label
+    id: string; 
 }
 
 const Input: React.FC<InputProps> = ({ label, id, ...props }) => {

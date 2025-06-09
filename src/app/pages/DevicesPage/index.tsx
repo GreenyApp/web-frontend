@@ -4,7 +4,7 @@ import DeviceCard from '../../../components/DeviceCard';
 import { useDeviceStore } from '../../../store/deviceStore';
 import { useUIStore } from '../../../store/uiStore';
 import { PageHeader, PageTitle, Grid, EmptyStateContainer } from './styles';
-import { FaPlus, FaBoxOpen } from 'react-icons/fa'; // Icons for button and empty state
+import { FaPlus, FaBoxOpen } from 'react-icons/fa';
 
 const DevicesPage: React.FC = () => {
     const { devices, fetchDevices, isLoading, error } = useDeviceStore();

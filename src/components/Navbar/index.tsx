@@ -11,7 +11,6 @@ const Navbar: React.FC = () => {
     const handleLogout = () => {
         logout();
         showNotification('Ви успішно вийшли з облікового запису', 'success');
-        // Navigation to /auth will be handled by ProtectedRoute
     };
 
     return (

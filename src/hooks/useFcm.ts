@@ -1,7 +1,6 @@
-// src/hooks/useFcm.ts
 import { useEffect, useState } from 'react';
 import { requestForToken, onMessageListener } from '../config/firebase';
-import { useUIStore } from '../store/uiStore'; // To show in-app notifications
+import { useUIStore } from '../store/uiStore';
 import { useAuthStore } from '../store/authStore';
 
 interface FcmPayload {
@@ -10,7 +9,7 @@ interface FcmPayload {
         body?: string;
         image?: string;
     };
-    data?: Record<string, string>; // Custom data
+    data?: Record<string, string>; 
 }
 
 export const useFcm = () => {
@@ -22,15 +21,12 @@ export const useFcm = () => {
     useEffect(() => {
         const setupFcm = async () => {
             if (isAuthenticated && 'Notification' in window && 'serviceWorker' in navigator) {
-                // Request permission
                 const permission = await Notification.requestPermission();
                 if (permission === 'granted') {
                     console.log('Notification permission granted.');
                     const token = await requestForToken();
                     if (token) {
                         setFcmToken(token);
-                        // TODO: Send this token to your backend if it's new or changed
-                        // This should ideally be done in a service after login/token refresh
                         console.log('FCM Token acquired in hook:', token);
                     }
                 } else {
@@ -40,16 +36,15 @@ export const useFcm = () => {
         };
 
         setupFcm();
-    }, [isAuthenticated]); // Re-run if authentication state changes
+    }, [isAuthenticated]);
 
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const unsubscribe = onMessageListener()
             .then((payload) => {
-                const fcmPayload = payload as FcmPayload; // Type assertion
+                const fcmPayload = payload as FcmPayload;
                 console.log('Foreground message received in hook:', fcmPayload);
                 setNotification(fcmPayload);
-                // Show an in-app notification using your UI store
                 showUiNotification(
                     `${fcmPayload.notification?.title || 'New Message'}: ${fcmPayload.notification?.body || ''}`,
                     'info'
@@ -57,10 +52,7 @@ export const useFcm = () => {
             })
             .catch((err) => console.error('failed to listen for foreground messages: ', err));
 
-        return () => {
-            // Clean up the listener if needed, though onMessageListener itself returns a promise
-            // that resolves once. If you were using a continuous listener, you'd unsubscribe here.
-        };
+        return () => {};
     }, [showUiNotification]);
 
     return { fcmToken, notification };

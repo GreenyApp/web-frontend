@@ -1,11 +1,9 @@
-// src/components/DeviceFormModal/index.tsx
 import React, { useState, useEffect, type FormEvent } from 'react';
 import Modal from '../Modal';
 import Input from '../Input';
 import Button from '../Button';
 import { useUIStore } from '../../store/uiStore';
 import { useDeviceStore } from '../../store/deviceStore';
-// Product type import might not be needed here if not directly used
 
 const DeviceFormModal: React.FC = () => {
     const {
@@ -14,7 +12,7 @@ const DeviceFormModal: React.FC = () => {
         deviceModalMode,
         deviceToEditId,
     } = useUIStore();
-    const { addDevice, getDeviceById, devices, isLoading: deviceLoading, updateDeviceName } = useDeviceStore(); // Added updateDeviceName
+    const { addDevice, getDeviceById, devices, isLoading: deviceLoading, updateDeviceName } = useDeviceStore();
 
     const [deviceName, setDeviceName] = useState('');
     const [deviceCode, setDeviceCode] = useState('');
@@ -25,7 +23,7 @@ const DeviceFormModal: React.FC = () => {
             const device = getDeviceById(deviceToEditId);
             if (device) {
                 setDeviceName(device.name || '');
-                setDeviceCode(device.code || ''); // Keep setting code for display
+                setDeviceCode(device.code || ''); 
                 setCurrentDeviceId(device.id);
             } else {
                 console.error("Device to edit not found:", deviceToEditId);
@@ -37,11 +35,11 @@ const DeviceFormModal: React.FC = () => {
             setDeviceCode('');
             setCurrentDeviceId(null);
         }
-    }, [isDeviceModalOpen, deviceModalMode, deviceToEditId, getDeviceById, devices, closeDeviceModal]); // Added closeDeviceModal to dependencies
+    }, [isDeviceModalOpen, deviceModalMode, deviceToEditId, getDeviceById, devices, closeDeviceModal]); 
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (!deviceName.trim()) { // Only name is required for edit, code is not editable via this form
+        if (!deviceName.trim()) { 
             useUIStore.getState().showNotification("Назва пристрою обов'язкова!", "error");
             return;
         }
@@ -57,13 +55,11 @@ const DeviceFormModal: React.FC = () => {
             success = !!newDevice;
         } else if (deviceModalMode === 'edit' && currentDeviceId) {
             success = await updateDeviceName(currentDeviceId, deviceName);
-            // Notification is handled within updateDeviceName
         }
 
         if (success) {
             closeDeviceModal();
         }
-        // Error notifications are handled within the store actions
     };
 
     const modalTitle = deviceModalMode === 'add' ? 'Додати пристрій' : 'Редагувати пристрій';
@@ -84,10 +80,10 @@ const DeviceFormModal: React.FC = () => {
                 </>
             }
         >
-            <form onSubmit={handleSubmit}> {/* Make sure this form tag is present */}
+            <form onSubmit={handleSubmit}> 
                 <Input
                     label="Назва пристрою"
-                    id="deviceNameModal" // Changed ID to avoid conflict with other inputs
+                    id="deviceNameModal" 
                     value={deviceName}
                     onChange={(e) => setDeviceName(e.target.value)}
                     required
@@ -95,11 +91,11 @@ const DeviceFormModal: React.FC = () => {
                 />
                 <Input
                     label="Код пристрою"
-                    id="deviceCodeModal" // Changed ID to avoid conflict
+                    id="deviceCodeModal" 
                     value={deviceCode}
                     onChange={(e) => setDeviceCode(e.target.value)}
-                    required={deviceModalMode === 'add'} // Only required for add mode
-                    disabled={deviceLoading || deviceModalMode === 'edit'} // Code is not editable
+                    required={deviceModalMode === 'add'} 
+                    disabled={deviceLoading || deviceModalMode === 'edit'} 
                 />
                 <button type="submit" style={{ display: 'none' }} disabled={deviceLoading}></button>
             </form>

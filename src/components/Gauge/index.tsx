@@ -3,13 +3,13 @@ import { useTheme } from 'styled-components';
 import { GaugeContainer, GaugeFill } from './styles';
 
 interface GaugeProps {
-    value: number; // Percentage 0-100
-    type: 'water' | 'soilHumidity' | 'airHumidity' | 'light' | 'airQuality' | 'temperature'; // Temperature might not be a gauge
+    value: number; 
+    type: 'water' | 'soilHumidity' | 'airHumidity' | 'light' | 'airQuality' | 'temperature'; 
 }
 
 const Gauge: React.FC<GaugeProps> = ({ value, type }) => {
     const theme = useTheme();
-    let color = theme.colors.info; // Default
+    let color = theme.colors.info; 
 
     switch (type) {
         case 'water':
@@ -24,13 +24,12 @@ const Gauge: React.FC<GaugeProps> = ({ value, type }) => {
         case 'light':
             color = theme.colors.warning;
             break;
-        case 'airQuality': // Assuming higher % is better
+        case 'airQuality':
             color = theme.colors.success;
             break;
-        // 'temperature' might be displayed differently, not as a typical 0-100 gauge
     }
 
-    const percentage = Math.max(0, Math.min(100, value)); // Clamp value
+    const percentage = Math.max(0, Math.min(100, value));
 
     return (
         <GaugeContainer>

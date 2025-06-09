@@ -1,16 +1,14 @@
-// src/app/App.tsx
 import React, { useEffect, Suspense, lazy, type JSX } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyle } from './theme';
 import { useAuthStore } from './store/authStore';
 import Notification from './components/Notification';
-import Layout from './components/Layout'; // Create this component
+import Layout from './components/Layout';
 import DeviceFormModal from './components/DeviceFormModal';
 import DeleteConfirmationModal from './components/DeleteConfirmationModal';
 import { useFcm } from './hooks/useFcm';
 
-// Lazy load pages
 const AuthPage = lazy(() => import('./app/pages/AuthPage'));
 const HomePage = lazy(() => import('./app/pages/HomePage'));
 const DevicesPage = lazy(() => import('./app/pages/DevicesPage'));

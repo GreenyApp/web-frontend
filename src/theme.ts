@@ -1,4 +1,3 @@
-// src/theme.ts
 import { createGlobalStyle } from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 
@@ -70,8 +69,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-// Add this to your `styled.d.ts` or directly in `theme.ts` if you prefer
-// For styled-components DefaultTheme typing
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: typeof colors;

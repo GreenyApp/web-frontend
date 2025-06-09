@@ -24,7 +24,6 @@ const HomePage: React.FC = () => {
         fetchDevices();
     }, [fetchDevices]);
 
-    // Find a device with low water (example warning)
     const lowWaterDevice = devices.find(d => d.waterLevel !== undefined && d.waterLevel < 30);
 
     const handleDetailsClick = (deviceId: number) => {
@@ -66,13 +65,12 @@ const HomePage: React.FC = () => {
             <SectionHeader>Швидкий статус</SectionHeader>
             {devices.length > 0 ? (
                 <Grid>
-                    {devices.slice(0, 3).map((device) => ( // Show first 3 for quick status
+                    {devices.slice(0, 3).map((device) => (
                         <DeviceCard key={device.id} device={device} showFullDetails={false}>
-                            {/* Override default actions for homepage card if needed */}
                             <Button
                                 onClick={() => handleDetailsClick(device.id)}
                                 icon={<FaInfoCircle />}
-                                style={{marginTop: '15px'}} // Add some margin for the button
+                                style={{marginTop: '15px'}}
                             >
                                 Детальніше
                             </Button>

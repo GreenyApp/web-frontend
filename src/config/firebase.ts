@@ -17,7 +17,7 @@ const messaging = getMessaging(app);
 export const requestForToken = async () => {
     try {
         const currentToken = await getToken(messaging, {
-            vapidKey: "BO4a9x8ks_UdDM5fKfX3YKZyou_1N9w1tYdW1Dne5MJ58NylGXDBVCjwGDBqxjU_k-YpxYbJHrUp280KabIL51o", // See step 3
+            vapidKey: "BO4a9x8ks_UdDM5fKfX3YKZyou_1N9w1tYdW1Dne5MJ58NylGXDBVCjwGDBqxjU_k-YpxYbJHrUp280KabIL51o", 
         });
         if (currentToken) {
             console.log("FCM Registration Token:", currentToken);

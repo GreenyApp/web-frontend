@@ -1,9 +1,8 @@
-// src/config/api.ts
 import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:3000', // ADJUST AS NEEDED
+    baseURL: 'http://localhost:3000',
     headers: {
         'Content-Type': 'application/json',
     },

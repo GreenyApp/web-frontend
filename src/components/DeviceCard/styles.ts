@@ -1,22 +1,20 @@
 import styled from 'styled-components';
-import Card from '../Card'; // Import the Card component itself for styling
+import Card from '../Card';
 
-export const StyledDeviceCard = styled(Card)` // Extend Card styles
-  /* Add specific styles for DeviceCard if needed,
-     otherwise, it inherits from CardWrapper */
+export const StyledDeviceCard = styled(Card)`
 `;
 
 export const DeviceHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%; /* Ensure it takes full width of CardHeader */
+    width: 100%;
 `;
 
 export const DeviceTitle = styled.h3`
     font-size: 1.2rem;
     font-weight: bold;
-    margin: 0; /* Override default h3 margin */
+    margin: 0;
 `;
 
 export const DeviceInfo = styled.div`
@@ -26,7 +24,7 @@ export const DeviceInfo = styled.div`
 export const InfoItem = styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Align items nicely */
+    align-items: center; 
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
@@ -40,7 +38,7 @@ export const InfoItem = styled.div`
 export const InfoLabel = styled.span`
     font-weight: 500;
     color: ${({ theme }) => theme.colors.text};
-    flex-basis: 50%; /* Give some space */
+    flex-basis: 50%; 
 `;
 
 export const InfoValue = styled.span`
@@ -50,18 +48,17 @@ export const InfoValue = styled.span`
 `;
 
 export const InfoGaugeWrapper = styled.div`
-    flex-basis: 100%; /* Gauge takes full width below label/value */
+    flex-basis: 100%; 
     margin-top: 5px;
 `;
 
 export const DeviceActions = styled.div`
-    margin-top: 20px; /* Increased margin */
+    margin-top: 20px;
     display: flex;
     gap: 10px;
-    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    flex-wrap: wrap;
 `;
 
-// Specific styling for info items with gauges
 export const InfoItemWithGauge = styled(InfoItem)`
-  flex-wrap: wrap; // Allow label/value and gauge to stack
+  flex-wrap: wrap;
 `;

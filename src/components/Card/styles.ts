@@ -8,7 +8,7 @@ export const CardWrapper = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 100%; /* For grid layouts to fill height */
+    height: 100%;
 `;
 
 export const CardHeaderStyled = styled.div`
@@ -20,5 +20,5 @@ export const CardHeaderStyled = styled.div`
 
 export const CardBody = styled.div`
     padding: 20px;
-    flex-grow: 1; /* Allows body to expand if card has fixed height actions */
+    flex-grow: 1; 
 `;

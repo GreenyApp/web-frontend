@@ -22,7 +22,7 @@ const AuthPage: React.FC = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        clearAuthError(); // Clear previous errors
+        clearAuthError();
 
         if (mode === 'register' && password !== confirmPassword) {
             showNotification('Паролі не співпадають!', 'error');
@@ -40,9 +40,6 @@ const AuthPage: React.FC = () => {
 
         if (success) {
             navigate('/');
-        } else {
-            // Error will be set in authStore, and displayed via {authError}
-            // showNotification(authStoreError || 'Помилка автентифікації', 'error');
         }
     };
 

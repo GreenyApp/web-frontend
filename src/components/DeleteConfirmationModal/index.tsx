@@ -1,4 +1,3 @@
-// src/components/DeleteConfirmationModal/index.tsx
 import React from 'react';
 import Modal from '../Modal';
 import Button from '../Button';
@@ -21,10 +20,8 @@ const DeleteConfirmationModal: React.FC = () => {
         if (deviceToDeleteId) {
             const success = await deleteDevice(deviceToDeleteId);
             if (success) {
-                // Notification is handled within the store action
                 closeDeleteModal();
             }
-            // If not successful, modal remains open, error notification shown by store
         }
     };
 

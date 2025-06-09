@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/store/authStore.ts
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import authService from '../services/authService';
 import userService from '../services/userService';
 import type { SignInDto, SignUpDto, AuthResponse } from '../types/auth';
 import type { User } from '../types/user';
-import { useDeviceStore } from './deviceStore'; // For clearing devices on logout
+import { useDeviceStore } from './deviceStore';
 
 interface AuthState {
     accessToken: string | null;
@@ -76,8 +75,6 @@ export const useAuthStore = create<AuthState>()(
             },
 
             logout: () => {
-                // Consider calling a backend /logout endpoint if it exists
-                // to invalidate refresh token server-side
                 set({
                     accessToken: null,
                     refreshToken: null,
@@ -85,8 +82,7 @@ export const useAuthStore = create<AuthState>()(
                     user: null,
                     error: null,
                 });
-                useDeviceStore.getState().clearDevices(); // Clear device data on logout
-                // No need to remove from localStorage explicitly if `persist` options handle it
+                useDeviceStore.getState().clearDevices();
             },
 
             fetchCurrentUser: async () => {
@@ -98,20 +94,17 @@ export const useAuthStore = create<AuthState>()(
                 } catch (error: any) {
                     const errorMessage = error.response?.data?.message || 'Failed to fetch user data';
                     console.error("Failed to fetch user:", errorMessage);
-                    // If token is invalid and refresh fails, interceptor handles logout.
-                    // If it's another error, we might not want to log out immediately.
                     set({ isLoading: false, error: errorMessage });
-                    // If 401 and refresh fails, the interceptor should trigger logout
                     if (error.response?.status === 401) {
                         get().logout();
                     }
                 }
             },
             checkAuthStatus: async () => {
-                const token = get().accessToken; // `persist` middleware loads from localStorage
+                const token = get().accessToken; 
                 if (token) {
                     set({ isAuthenticated: true });
-                    await get().fetchCurrentUser(); // Try to fetch user data if token exists
+                    await get().fetchCurrentUser();
                 } else {
                     set({ isAuthenticated: false, user: null });
                 }
@@ -119,11 +112,11 @@ export const useAuthStore = create<AuthState>()(
         }),
         {
             name: 'auth-storage',
-            storage: createJSONStorage(() => localStorage), // Use localStorage with correct PersistStorage interface
+            storage: createJSONStorage(() => localStorage), 
             partialize: (state) => ({
                 accessToken: state.accessToken,
                 refreshToken: state.refreshToken,
-            }), // Only persist tokens
+            }),
         }
     )
 );

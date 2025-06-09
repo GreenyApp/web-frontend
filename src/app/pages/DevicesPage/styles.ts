@@ -16,7 +16,7 @@ export const PageTitle = styled.h1`
 
 export const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Slightly larger min-width for detailed cards */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
 `;
 
@@ -25,7 +25,7 @@ export const EmptyStateContainer = styled.div`
     padding: 50px 0;
     color: ${({ theme }) => theme.colors.darkGray};
 
-    svg { /* For react-icons used in empty state */
+    svg {
         font-size: 4rem;
         margin-bottom: 20px;
         color: ${({ theme }) => theme.colors.veryLightGray};

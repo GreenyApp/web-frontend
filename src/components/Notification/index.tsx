@@ -5,7 +5,7 @@ import { NotificationWrapper } from './styles';
 const Notification: React.FC = () => {
     const { message, type, visible } = useUIStore((state) => state.notification);
 
-    if (!message && !visible) return null; // Don't render if no message, even if briefly visible
+    if (!message && !visible) return null;
 
     return (
         <NotificationWrapper visible={visible} type={type}>

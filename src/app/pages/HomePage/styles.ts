@@ -40,4 +40,4 @@ export const WarningText = styled.p`
 
 export const SeedlingIcon = styled(FaSeedling)` color: ${({ theme }) => theme.colors.primary};`;
 export const WarningIcon = styled(FaExclamationTriangle)` color: ${({ theme }) => theme.colors.warning};`;
-export const LightbulbIcon = styled(FaLightbulb)` color: ${({ theme }) => theme.colors.info};`; // Or other suitable color
+export const LightbulbIcon = styled(FaLightbulb)` color: ${({ theme }) => theme.colors.info};`;

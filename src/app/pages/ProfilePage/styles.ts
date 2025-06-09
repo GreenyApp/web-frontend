@@ -8,7 +8,7 @@ export const SectionHeader = styled.h1`
 `;
 
 export const ProfileFormContainer = styled.div`
-    max-width: 600px; /* Or adjust as needed */
+    max-width: 600px;
 `;
 
 export const SubHeader = styled.h3`

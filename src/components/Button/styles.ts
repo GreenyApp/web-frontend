@@ -3,7 +3,7 @@ import styled, { css, type DefaultTheme } from 'styled-components';
 interface StyledButtonProps {
     variant?: 'outline' | 'danger';
     fullWidth?: boolean;
-    theme: DefaultTheme; // Explicitly type theme
+    theme: DefaultTheme; 
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`

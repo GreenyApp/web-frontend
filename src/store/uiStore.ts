@@ -1,4 +1,3 @@
-// src/store/uiStore.ts
 import { create } from 'zustand';
 
 export type NotificationType = 'success' | 'error' | 'warning' | 'info';
@@ -13,7 +12,6 @@ interface UIState {
     notification: NotificationState;
     showNotification: (message: string, type?: NotificationType) => void;
     hideNotification: () => void;
-    // Modal states
     isDeviceModalOpen: boolean;
     deviceModalMode: 'add' | 'edit';
     deviceToEditId: number | null;

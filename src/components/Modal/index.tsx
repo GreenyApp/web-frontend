@@ -14,7 +14,7 @@ interface ModalProps {
     onClose: () => void;
     title: string;
     children: React.ReactNode;
-    footerActions?: React.ReactNode; // Optional footer buttons
+    footerActions?: React.ReactNode; 
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -29,8 +29,8 @@ const Modal: React.FC<ModalProps> = ({
     }
 
     return (
-        <ModalOverlay onClick={onClose}> {/* Close on overlay click */}
-            <ModalContent onClick={(e) => e.stopPropagation()}> {/* Prevent closing when clicking inside content */}
+        <ModalOverlay onClick={onClose}> 
+            <ModalContent onClick={(e) => e.stopPropagation()}> 
                 <ModalHeader>
                     <ModalTitle>{title}</ModalTitle>
                     <ModalCloseButton onClick={onClose}>×</ModalCloseButton>

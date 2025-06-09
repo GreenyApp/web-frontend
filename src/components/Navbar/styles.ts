@@ -10,7 +10,6 @@ export const Nav = styled.nav`
 `;
 
 export const NavbarContent = styled.div`
-    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -26,7 +25,7 @@ export const LogoLink = styled(NavLink)`
     color: ${({ theme }) => theme.colors.textLight};
     text-decoration: none;
 
-    svg { /* For react-icons */
+    svg {
         margin-right: 10px;
     }
 `;
@@ -51,7 +50,6 @@ export const StyledNavLink = styled(NavLink)`
 
     &.active {
         font-weight: bold;
-        /* text-decoration: underline; */
         border-bottom: 2px solid ${({ theme }) => theme.colors.secondary};
     }
 `;

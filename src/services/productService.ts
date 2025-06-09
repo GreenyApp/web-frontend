@@ -18,7 +18,7 @@ const productService = {
         const response = await apiClient.put<Product>(`/product/user/${id}`, { name });
         return response.data;
     },
-    deleteProductByUser: async (id: number): Promise<void> => { // Backend returns nothing on success
+    deleteProductByUser: async (id: number): Promise<void> => {
         await apiClient.delete(`/product/user/${id}`);
     },
 };
